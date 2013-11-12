@@ -9,7 +9,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private int id;
+	private long id;
 	@Column(name = "user_login")
 	private String login;
 	@Column(name = "user_password")
@@ -25,7 +25,7 @@ public class User {
 	@Column(name = "user_birthday")
 	private Date birthday;
 	@Column(name = "user_lastlogin")
-	private Date lastlogin;
+	private Date lastLogin;
 	@Column(name = "user_role")
 	@ManyToOne
 	@JoinColumn(name = "role_id")
@@ -34,11 +34,24 @@ public class User {
 	public User() {
 	}
 
-	public int getId() {
+	public User(UserBuilder builder) {
+		this.id = builder.id;
+		this.login = builder.login;
+		this.password = builder.password;
+		this.email = builder.email;
+		this.firstName = builder.firstName;
+		this.lastName = builder.lastName;
+		this.registration = builder.registration;
+		this.birthday = builder.birthday;
+		this.lastLogin = builder.lastLogin;
+		this.role = builder.role;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -106,12 +119,12 @@ public class User {
 		this.birthday = birthday;
 	}
 
-	public Date getLastlogin() {
-		return lastlogin;
+	public Date getLastLogin() {
+		return lastLogin;
 	}
 
-	public void setLastlogin(Date lastlogin) {
-		this.lastlogin = lastlogin;
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
 	}
 
 	@Override
@@ -126,5 +139,72 @@ public class User {
 				", registration=" + registration +
 				", role=" + role +
 				'}';
+	}
+
+	public static class UserBuilder {
+		private long id;
+		private String login;
+		private String password;
+		private String firstName;
+		private String lastName;
+		private String email;
+		private Date registration;
+		private Date birthday;
+		private Date lastLogin;
+		private Role role;
+
+		public UserBuilder id(long id) {
+			this.id = id;
+			return this;
+		}
+
+		public UserBuilder login(String login) {
+			this.login = login;
+			return this;
+		}
+
+		public UserBuilder password(String password) {
+			this.password = password;
+			return this;
+		}
+
+		public UserBuilder firstName(String firstName) {
+			this.firstName = firstName;
+			return this;
+		}
+
+		public UserBuilder lastName(String lastName) {
+			this.lastName = lastName;
+			return this;
+		}
+
+		public UserBuilder email(String email) {
+			this.email = email;
+			return this;
+		}
+
+		public UserBuilder registration(Date registration) {
+			this.registration = registration;
+			return this;
+		}
+
+		public UserBuilder birthday(Date birthday) {
+			this.birthday = birthday;
+			return this;
+		}
+
+		public UserBuilder lastLogin(Date lastLogin) {
+			this.lastLogin = lastLogin;
+			return this;
+		}
+
+		public UserBuilder role(Role role) {
+			this.role = role;
+			return this;
+		}
+
+		public User build() {
+			return new User(this);
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.hubachov.web.controller;
+package com.hubachov.web.servlet;
 
 import com.hubachov.form.UserForm;
 import org.apache.commons.fileupload.FileItem;
