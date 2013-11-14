@@ -33,11 +33,11 @@ public class Task {
 			@JoinColumn(name = "task_id", nullable = false, updatable = true)},
 			inverseJoinColumns = {@JoinColumn(name = "strudent_id", nullable = false, updatable = true)})
 	private Set<User> students;
-	@Column(name = "task_expert", unique = false, updatable = true, nullable = false)
-	@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER, mappedBy = "User", cascade = CascadeType.ALL)
+	//@Column(name = "task_expert", unique = false, updatable = true, nullable = false)
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private User currentExpert;
-	@Column(name = "task_student", unique = false, updatable = true, nullable = false)
-	@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER, mappedBy = "User", cascade = CascadeType.ALL)
+	//@Column(name = "task_student", unique = false, updatable = true, nullable = false)
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private User currentStudent;
 
 	public Task() {

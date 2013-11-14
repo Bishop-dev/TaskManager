@@ -26,7 +26,6 @@ public class User {
 	private Date birthday;
 	@Column(name = "user_lastlogin")
 	private Date lastLogin;
-	@Column(name = "user_role")
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	private Role role;

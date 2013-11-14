@@ -1,13 +1,11 @@
-package com.hubachov.dataaccess.dao;
+package com.hubachov.dataaccess.service;
 
 import com.hubachov.entity.Role;
 import com.hubachov.entity.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.Set;
 
-@Repository
-public interface UserDAO {
+public interface UserService {
 	public User getUserByLogin(String login) throws Exception;
 
 	public User createUser(User user) throws Exception;
