@@ -5,6 +5,7 @@
     <title>Registration</title>
 </head>
 <body>
+
 <div class="container">
     <form class="form-horizontal" id="registrationForm" action="registration" method="post"
           enctype="multipart/form-data">

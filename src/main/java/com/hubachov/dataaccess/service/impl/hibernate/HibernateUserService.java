@@ -23,7 +23,7 @@ public class HibernateUserService implements UserService {
 
 	@Override
 	public User createUser(User user) throws Exception {
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		return userDAO.createUser(user);
 	}
 
 	@Override

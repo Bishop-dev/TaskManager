@@ -22,6 +22,7 @@ public class RegistrationController extends HttpServlet implements Servlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		ServletFileUpload uploader = new ServletFileUpload(new DiskFileItemFactory());
 		String fileName = "D:\\";
 		System.out.println(fileName);
@@ -62,4 +63,6 @@ public class RegistrationController extends HttpServlet implements Servlet {
 
 		return null;
 	}
+
+
 }

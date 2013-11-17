@@ -21,10 +21,11 @@ public class LoginController {
 	private static final String LABEL__MESSAGE = "message";
 
 	private static final String MESSAGE__LOGIN_FAIL = "Wrong login/password";
+	private static final String MESSAGE__SERVER_ERROR = "Error happened. Try again.";
 
 	private static final String SESSION_ATTRIBUTE_NAME__USER = "user";
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
 	public String login() {
 		return PATH__LOGIN_PAGE;
 	}
@@ -35,16 +36,24 @@ public class LoginController {
 		return PATH__LOGIN_PAGE;
 	}
 
-	@RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-	public String index(HttpServletRequest request, Principal principal) {
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index(HttpServletRequest request, Principal principal, Map<String, Object> map) {
 		String login = principal.getName();
 		if (login != null) {
 			try {
 				request.getSession().setAttribute(SESSION_ATTRIBUTE_NAME__USER, userService.getUserByLogin(login));
 			} catch (Exception e) {
 				log.error("Can't find user and set it to session", e);
+				map.put(LABEL__MESSAGE, MESSAGE__SERVER_ERROR);
+				return PATH__LOGIN_PAGE;
 			}
 		}
-		return null;
+		if(request.isUserInRole("admin")){
+
+		}
+		if(request.isUserInRole("user")){
+
+		}
+		return PATH__LOGIN_PAGE;
 	}
 }
