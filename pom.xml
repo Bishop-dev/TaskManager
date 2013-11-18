@@ -171,6 +171,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- C A P T C H A -->
+        <dependency>
+            <groupId>net.tanesha.recaptcha4j</groupId>
+            <artifactId>recaptcha4j</artifactId>
+            <version>0.0.7</version>
+        </dependency>
+
     </dependencies>
     <reporting>
         <plugins>

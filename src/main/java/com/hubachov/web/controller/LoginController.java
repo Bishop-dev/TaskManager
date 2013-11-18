@@ -17,11 +17,14 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	private static final String PATH__LOGIN_PAGE = "login";
+	private static final String PATH__INDEX_PAGE = "index";
 
 	private static final String LABEL__MESSAGE = "message";
 
 	private static final String MESSAGE__LOGIN_FAIL = "Wrong login/password";
 	private static final String MESSAGE__SERVER_ERROR = "Error happened. Try again.";
+
+	private static final String LOG_MESSAGE__USER_NOT_FOUND = "Can't find user and set it to session";
 
 	private static final String SESSION_ATTRIBUTE_NAME__USER = "user";
 
@@ -43,16 +46,16 @@ public class LoginController {
 			try {
 				request.getSession().setAttribute(SESSION_ATTRIBUTE_NAME__USER, userService.getUserByLogin(login));
 			} catch (Exception e) {
-				log.error("Can't find user and set it to session", e);
+				log.error(LOG_MESSAGE__USER_NOT_FOUND, e);
 				map.put(LABEL__MESSAGE, MESSAGE__SERVER_ERROR);
 				return PATH__LOGIN_PAGE;
 			}
 		}
-		if(request.isUserInRole("admin")){
-
+		if (request.isUserInRole("admin")) {
+			return PATH__INDEX_PAGE;
 		}
-		if(request.isUserInRole("user")){
-
+		if (request.isUserInRole("user")) {
+			return PATH__INDEX_PAGE;
 		}
 		return PATH__LOGIN_PAGE;
 	}

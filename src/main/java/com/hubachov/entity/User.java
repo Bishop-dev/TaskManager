@@ -20,6 +20,8 @@ public class User {
 	private String lastName;
 	@Column(name = "user_email")
 	private String email;
+	@Column(name = "user_phone")
+	private String phone;
 	@Column(name = "user_registration")
 	private Date registration;
 	@Column(name = "user_birthday")
@@ -38,6 +40,7 @@ public class User {
 		this.login = builder.login;
 		this.password = builder.password;
 		this.email = builder.email;
+		this.phone = builder.phone;
 		this.firstName = builder.firstName;
 		this.lastName = builder.lastName;
 		this.registration = builder.registration;
@@ -88,6 +91,14 @@ public class User {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public void setEmail(String email) {
@@ -147,6 +158,7 @@ public class User {
 		private String firstName;
 		private String lastName;
 		private String email;
+		private String phone;
 		private Date registration;
 		private Date birthday;
 		private Date lastLogin;
@@ -179,6 +191,11 @@ public class User {
 
 		public UserBuilder email(String email) {
 			this.email = email;
+			return this;
+		}
+
+		public UserBuilder phone(String phone) {
+			this.phone = phone;
 			return this;
 		}
 

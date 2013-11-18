@@ -7,7 +7,7 @@
 <head>
     <title>Login</title>
 </head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
 <body>
@@ -25,8 +25,14 @@
                 </div>
                 <form class="form-signin" name='f' action="<c:url value='j_spring_security_check'/>" method="post"
                       id="loginForm">
-                    <input type="text" name="j_username" class="form-control" placeholder="Email" autofocus>
-                    <input type="password" name="j_password" class="form-control" placeholder="Password">
+                    <div class="control-group">
+                        <input id="login" type="text" name="j_username" class="form-control" placeholder="Email"
+                               autofocus>
+                    </div>
+                    <div class="control-group">
+                        <input id="password" type="password" name="j_password"
+                               class="form-control" placeholder="Password">
+                    </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">
                         Sign in
                     </button>

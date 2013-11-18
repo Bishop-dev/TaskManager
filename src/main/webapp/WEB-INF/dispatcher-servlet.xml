@@ -34,10 +34,10 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--<bean id="roleDAO" class="com.hubachov.dao.impl.hibernate.HibernateRoleDAO"/>-->
+    <bean id="roleDAO" class="com.hubachov.dataaccess.dao.impl.hibernate.HibernateRoleDAO"/>
     <bean id="userDAO" class="com.hubachov.dataaccess.dao.impl.hibernate.HibernateUserDAO"/>
     <bean id="userService" class="com.hubachov.dataaccess.service.impl.hibernate.HibernateUserService"/>
-    <!--<bean id="roleService" class="com.hubachov.service.impl.RoleServiceImpl"/>-->
+    <bean id="roleService" class="com.hubachov.dataaccess.service.impl.hibernate.HibernateRoleService"/>
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
         <property name="driverClassName" value="org.h2.Driver"/>
@@ -61,7 +61,7 @@
                 hibernate.show_sql=true
                 hibernate.use_sql_comments=true
                 hibernate.format_sql=true
-                hibernate.hbm2ddl.auto=create
+                <!--hibernate.hbm2ddl.auto=create-->
             </value>
         </property>
     </bean>
@@ -69,7 +69,7 @@
           class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <!--  <bean id='reCaptcha' class='net.tanesha.recaptcha.ReCaptchaImpl'>
-          <property name='privateKey' value='6Lfb5ecSAAAAACnLK1mCj2WH0WN8psVBNIM8RSH8' />
-      </bean>-->
+    <bean id='reCaptcha' class='net.tanesha.recaptcha.ReCaptchaImpl'>
+        <property name='privateKey' value='6LcheuoSAAAAAIa6CHWF8Qh_K7lMfsjEvhbN2Gdx'/>
+    </bean>
 </beans>

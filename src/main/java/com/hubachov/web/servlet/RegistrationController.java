@@ -1,6 +1,6 @@
 package com.hubachov.web.servlet;
 
-import com.hubachov.form.UserForm;
+import com.hubachov.form.bean.UserForm;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;

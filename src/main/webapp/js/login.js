@@ -1,9 +1,14 @@
 $(function () {
+    $.extend($.validator.messages, {
+        required: "This field is required"
+    });
+
     $('#loginForm').validate({
         rules: {
-            login: {
+            j_username: {
                 required: true
-            }, password: {
+            },
+            j_password: {
                 required: true
             }
         }, highlight: function (element) {
@@ -13,4 +18,10 @@ $(function () {
             element.closest('.control-group').removeClass('error').addClass('success');
         }
     });
-}());
+
+    $('#loginForm').on('submit', function (event) {
+        if (!$('#loginForm').valid()) {
+            event.preventDefault();
+        }
+    });
+});
