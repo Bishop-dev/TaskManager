@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LogoutController {
-	private static final String PATH__REDIRECT = "redirect:";
-	private static final String PATH__LOGIN_PAGE = "login";
 
-	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout() {
-		return PATH__REDIRECT + PATH__LOGIN_PAGE;
-	}
+
+    @RequestMapping(value = PathHolder.PATH__REQUEST_LOGOUT, method = RequestMethod.GET)
+    public String logout() {
+        return PathHolder.PATH__REDIRECT + PathHolder.PATH__LOGIN_PAGE;
+    }
 }

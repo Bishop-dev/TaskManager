@@ -9,9 +9,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 import java.security.Principal;
 import java.util.Arrays;
@@ -40,22 +37,22 @@ public class LoginControllerTest {
 
     @Test
     public void testGetLoginPage() throws Exception {
-        List<String> list = Arrays.asList(LoginController.PATH__REQUEST_ROOT, LoginController.PATH__REQUEST_LOGIN);
+        List<String> list = Arrays.asList(PathHolder.PATH__REQUEST_ROOT, PathHolder.PATH__REQUEST_LOGIN);
         for (String path : list) {
             ResultActions actions = mockMvc.perform(get(path));
             actions.andExpect(status().isOk());
-            actions.andExpect(view().name(LoginController.PATH__LOGIN_PAGE));
-            actions.andExpect(forwardedUrl(ControllerTestHolder.PATH__PREFIX + LoginController.PATH__LOGIN_PAGE +
+            actions.andExpect(view().name(PathHolder.PATH__LOGIN_PAGE));
+            actions.andExpect(forwardedUrl(ControllerTestHolder.PATH__PREFIX + PathHolder.PATH__LOGIN_PAGE +
                     ControllerTestHolder.PATH__SUFFIX));
         }
     }
 
     @Test
     public void testLoginFail() throws Exception {
-        ResultActions actions = mockMvc.perform(get(LoginController.PATH__REQUEST_LOGIN_FAIL));
+        ResultActions actions = mockMvc.perform(get(PathHolder.PATH__REQUEST_LOGIN_FAIL));
         actions.andExpect(status().isOk());
-        actions.andExpect(view().name(LoginController.PATH__LOGIN_PAGE));
-        actions.andExpect(forwardedUrl(ControllerTestHolder.PATH__PREFIX + LoginController.PATH__LOGIN_PAGE +
+        actions.andExpect(view().name(PathHolder.PATH__LOGIN_PAGE));
+        actions.andExpect(forwardedUrl(ControllerTestHolder.PATH__PREFIX + PathHolder.PATH__LOGIN_PAGE +
                 ControllerTestHolder.PATH__SUFFIX));
     }
 
@@ -64,7 +61,7 @@ public class LoginControllerTest {
     public void testGetIndexPageAdmin() throws Exception {
         Principal principal = mock(Principal.class);
         when(principal.getName()).thenReturn(admin.getLogin());
-        ResultActions actions = mockMvc.perform(get(LoginController.PATH__REQUEST_INDEX));
+        ResultActions actions = mockMvc.perform(get(PathHolder.PATH__REQUEST_INDEX));
         actions.andExpect(status().isOk());
     }
 

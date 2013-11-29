@@ -16,51 +16,37 @@ public class LoginController {
     private static final Logger log = Logger.getLogger(LoginController.class);
     @Autowired
     private UserService userService;
-    static final String PATH__LOGIN_PAGE = "login";
-    private static final String PATH__INDEX_PAGE = "index";
-    static final String PATH__REQUEST_ROOT = "/";
-    static final String PATH__REQUEST_INDEX = "/index";
-    static final String PATH__REQUEST_LOGIN = "/login";
-    static final String PATH__REQUEST_LOGIN_FAIL = "/login-fail";
 
-    private static final String LABEL__MESSAGE = "message";
 
-    private static final String MESSAGE__LOGIN_FAIL = "Wrong login/password";
-    private static final String MESSAGE__SERVER_ERROR = "Error happened. Try again.";
-
-    private static final String LOG_MESSAGE__USER_NOT_FOUND = "Can't find user and set it to session";
-
-    private static final String SESSION_ATTRIBUTE_NAME__USER = "user";
-
-    @RequestMapping(value = {PATH__REQUEST_ROOT, PATH__REQUEST_LOGIN}, method = RequestMethod.GET)
+    @RequestMapping(value = {PathHolder.PATH__REQUEST_ROOT, PathHolder.PATH__REQUEST_LOGIN}, method = RequestMethod.GET)
     public String login() {
-        return PATH__LOGIN_PAGE;
+        return PathHolder.PATH__LOGIN_PAGE;
     }
 
-    @RequestMapping(value = PATH__REQUEST_LOGIN_FAIL, method = RequestMethod.GET)
+    @RequestMapping(value = PathHolder.PATH__REQUEST_LOGIN_FAIL, method = RequestMethod.GET)
     public String loginFail(Map<String, Object> map) {
-        map.put(LABEL__MESSAGE, MESSAGE__LOGIN_FAIL);
-        return PATH__LOGIN_PAGE;
+        map.put(PathHolder.ATTRIBUTE_NAME__MESSAGE, PathHolder.MESSAGE__LOGIN_FAIL);
+        return PathHolder.PATH__LOGIN_PAGE;
     }
 
-    @RequestMapping(value = PATH__REQUEST_INDEX, method = RequestMethod.GET)
+    @RequestMapping(value = PathHolder.PATH__REQUEST_INDEX, method = RequestMethod.GET)
     public String index(HttpServletRequest request, Principal principal, Map<String, Object> map) {
         String login = principal.getName();
         if (login != null) {
             try {
-                request.getSession().setAttribute(SESSION_ATTRIBUTE_NAME__USER, userService.getUserByLogin(login));
+                request.getSession().setAttribute(PathHolder.SESSION_ATTRIBUTE_NAME__USER, userService.getUserByLogin(login));
             } catch (Exception e) {
-                log.error(LOG_MESSAGE__USER_NOT_FOUND, e);
-                map.put(LABEL__MESSAGE, MESSAGE__SERVER_ERROR);
-                return PATH__LOGIN_PAGE;
+                log.error(PathHolder.LOG_MESSAGE__USER_NOT_FOUND, e);
+                map.put(PathHolder.ATTRIBUTE_NAME__MESSAGE, PathHolder.MESSAGE__SERVER_ERROR);
+                return PathHolder.PATH__LOGIN_PAGE;
             }
         }
         if (request.isUserInRole("admin")) {
-            return PATH__INDEX_PAGE;
+            return PathHolder.PATH__INDEX_PAGE;
         }
         if (request.isUserInRole("user")) {
-            return PATH__INDEX_PAGE;
+            return PathHolder.PATH__INDEX_PAGE;
         }
-        return PATH__LOGIN_PAGE;
+        return PathHolder.PATH__LOGIN_PAGE;
     }
 }

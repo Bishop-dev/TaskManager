@@ -5,11 +5,13 @@
 <head>
     <title>Registration</title>
 </head>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/registration.js"></script>
 <body>
 
 <div class="container">
-    <form class="form-horizontal" id="registrationForm" action="registration" method="post"
-          enctype="multipart/form-data">
+    <form class="form-horizontal" id="registrationForm" action="registration" method="post">
         <fieldset>
             <legent>Registration Form</legent>
             <div class="control-group">
@@ -27,6 +29,10 @@
             <div class="control-group">
                 <div class="control-label">Email:</div>
                 <div class="controls"><input id="email" type="text" name="email"/></div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">Phone:</div>
+                <div class="controls"><input id="phone" type="text" name="phone"/></div>
             </div>
             <div class="control-group">
                 <div class="control-label">First Name:</div>
@@ -47,16 +53,13 @@
                     <option value="expert">Expert</option>
                 </select></div>
             </div>
-            <div class="control-group">
-                <div class="control-label">Avatar:</div>
-                <div class="controls"><input id="avatar" class="btn" type="file" name="avatar"/></div>
-            </div>
 
             <tags:captcha privateKey="6LcheuoSAAAAAIa6CHWF8Qh_K7lMfsjEvhbN2Gdx"
                           publicKey="6LcheuoSAAAAABiUwapK7iF_nACc7VM2dZFGt1C0"/>
 
             <div class="control-group">
-                <div class="control-label"><input class="btn btn-primary" id="submitBtn" type="submit" value="Ok"/></div>
+                <div class="control-label"><input class="btn btn-primary" id="submitBtn" type="submit" value="Ok"/>
+                </div>
                 <div class="controls"><input class="btn" id="cancelBtn" type="button" value="Cancel"/></div>
             </div>
         </fieldset>
